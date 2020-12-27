@@ -4,7 +4,7 @@
     {{ csrf_field() }}
     <input type="hidden" name="_method" value="PUT">
     <input type="text" name="name" value="{{ $product->name }}">
-    <textarea name="description">{{ $product->description }}</textarea>
+    <textarea name="description"  value="{{ $product->description }}"></textarea>
     <input type="number" name="price"  value="{{ $product->price }}">
     <select name="category_id">
     @foreach ($categories as $category)
@@ -14,7 +14,7 @@
             <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endif
     @endforeach
-    </select>    
+    </select>
     <button type="submit">Update</button>
 </form>
 
