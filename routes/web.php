@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WebController@index');
 
 Route::resource('products', 'ProductController');
 
