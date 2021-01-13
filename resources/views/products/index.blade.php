@@ -33,7 +33,11 @@
                 @foreach($products as $product)
                 <div class="col-3">
                     <a href="{{route('products.show', $product)}}">
-                        <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="img-thumbnail">
+                        @if ($product->image !== "")
+                        <img src="{{ asset('storage/products/'.$product->image) }}" class="h-10 img-fluid">
+                        @else
+                        <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
+                        @endif
                     </a>
                     <div class="row">
                         <div class="col-12">

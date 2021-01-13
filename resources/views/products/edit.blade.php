@@ -4,7 +4,7 @@
 <div class="container">
     <h1>商品情報更新</h1>
 
-    <form method="POST" action="/products/{{ $product->id }}">
+    <form method="POST" action="/products/{{ $product->id }}" class="mb-5" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="hidden" name="_method" value="PUT">
         <div class="form-group">
@@ -31,9 +31,32 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-danger">更新</button>
+        <div class="form-inline mt-4 mb-4 row">
+            <label class="col-2 d-flex justify-content-start">画像</label>
+            @if ($product->image !== null)
+            <img src="{{ asset('storage/products/'.$product->image) }}" id="product-image-preview" class="img-fluid w-25">
+            @else
+            <img src="#" id="product-image-preview">
+            @endif
+            <div class="d-flex flex-column ml-2">
+                <small class="mb-3">600px×600px推奨。<br>商品の魅力が伝わる画像をアップロードして下さい。</small>
+                <label for="product-image" class="btn samazon-submit-button">画像を選択</label>
+                <input type="file" name="image" id="product-image" onChange="handleImage(this.files)" style="display: none;">
+            </div>
+        </div>
     </form>
 
     <a href="/products">商品一覧に戻る</a>
 </div>
+<script type="text/javascript">
+    function handleImage(image) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            let imagePreview = document.getElementById("product-image-preview");
+            imagePreview.src = reader.result;
+        }
+        console.log(image);
+        reader.readAsDataURL(image[0]);
+    }
+</script>
 @endsection

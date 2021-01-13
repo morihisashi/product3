@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -85,7 +86,14 @@ class ProductController extends Controller
       $product->description = $request->input('description');
       $product->price = $request->input('price');
       $product->category_id = $request->input('category_id');
+      if ($request->file('image') !== null) {
+            $image = $request->file('image')->store('products');
+            $product->image = basename($image);
+        } else {
+            $product->image = '';
+        }
       $product->save();
+      return redirect('/');
 
       return redirect()->route('products.show', ['id' => $product->id]);
     }
@@ -128,6 +136,13 @@ class ProductController extends Controller
       $product->description = $request->input('description');
       $product->price = $request->input('price');
       $product->category_id = $request->input('category_id');
+      
+      if ($request->hasFile('image')) {
+             $image = $request->file('image')->store('public/products');
+             $product->image = basename($image);
+      } else {
+             $product->image = '';
+         }
       $product->update();
 
       return redirect()->route('products.show', ['id' => $product->id]);

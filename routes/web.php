@@ -15,8 +15,6 @@ Route::get('/', 'WebController@index');
 
 Route::resource('products', 'ProductController');
 
-
-
 Route::get('users/carts', 'CartController@index')->name('carts.index');
 
 Route::post('users/carts', 'CartController@store')->name('carts.store');
