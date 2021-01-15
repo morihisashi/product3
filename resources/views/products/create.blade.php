@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>新しい商品を追加</h1>
+    <h1>商品登録</h1>
 
     <form method="POST" action="/products" class="mb-5" enctype="multipart/form-data">
         {{ csrf_field() }}
@@ -27,24 +27,32 @@
             </select>
         </div>
         <div class="form-inline mt-4 mb-4 row">
-            <label for="product-image" class="col-2 d-flex justify-content-start">画像</label>
+            <label class="col-2 d-flex justify-content-start">画像</label>
+            @if ($product->image !== null)
+            <img src="{{ asset('storage/products/'.$product->image) }}" id="product-image-preview" class="img-fluid w-25">
+            @else
             <img src="#" id="product-image-preview">
-            <input type="file" name="image" id="product-image">
+            @endif
+            <div class="d-flex flex-column ml-2">
+                <small class="mb-3">600px×600px推奨。<br>商品の魅力が伝わる画像をアップロードして下さい。</small>
+                <label for="product-image" class="btn samazon-submit-button">画像を選択</label>
+                <input type="file" name="image" id="product-image" onChange="handleImage(this.files)" style="display: none;">
+            </div>
         </div>
         <button type="submit" class="btn btn-success">商品を登録</button>
     </form>
 
-    <a href="/products">商品一覧に戻る</a>
+    <a href="/products" class="btn btn-success">商品一覧に戻る</a>
 </div>
 <script type="text/javascript">
-    $("#product-image").change(function() {
-        if (this.files && this.files[0]) {
-            let reader = new FileReader();
-            reader.onload = function(e) {
-                $("product-image-preview").attr("src", e.target.result);
-            }
-            reader.readAsDataURL(this.files[0]);
+    function handleImage(image) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            let imagePreview = document.getElementById("product-image-preview");
+            imagePreview.src = reader.result;
         }
-    });
+        console.log(image);
+        reader.readAsDataURL(image[0]);
+    }
 </script>
 @endsection

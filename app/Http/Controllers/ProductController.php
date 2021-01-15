@@ -66,11 +66,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product)
     {
       $categories = Category::all();
+      $product = new Product();
       
-      return view('products.create', compact('categories'));
+      return view('products.create', compact('categories', "product"));
     }
 
     /**
@@ -93,7 +94,6 @@ class ProductController extends Controller
             $product->image = '';
         }
       $product->save();
-      return redirect('/');
 
       return redirect()->route('products.show', ['id' => $product->id]);
     }

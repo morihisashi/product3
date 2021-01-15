@@ -44,6 +44,9 @@
                 <input type="file" name="image" id="product-image" onChange="handleImage(this.files)" style="display: none;">
             </div>
         </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="w-25 btn samazon-submit-button">更新</button>
+        </div>
     </form>
 
     <a href="/products">商品一覧に戻る</a>

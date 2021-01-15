@@ -58,6 +58,7 @@
                         </a>
                         @endif
                     </div>
+
                 </div>
             </form>
             @endauth
@@ -77,6 +78,7 @@
                 </div>
                 @endforeach
             </div>
+            
 
             @auth
             <div class="row">
@@ -90,6 +92,7 @@
             </div>
             @endauth
         </div>
+        <a href="/products" class="btn samazon-submit-button ml-2">商品一覧に戻る</a>
     </div>
 </div>
 @endsection

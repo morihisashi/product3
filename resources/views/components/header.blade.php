@@ -19,14 +19,15 @@
         <ul class="navbar-nav ml-auto mr-5 mt-2">
             <!-- Authentication Links -->
             @guest
-            <li class="nav-item mr-5">
-                <a class="nav-link" href="{{ action('ProductController@create') }}"><label>商品登録</label></a>
-            </li>
+            
             <li class="nav-item mr-5">
                 <a class="nav-link" href="{{ route('register') }}"><label>新規登録</label></a>
             </li>
             <li class="nav-item mr-5">
                 <a class="nav-link" href="{{ route('login') }}"><label>ログイン</label></a>
+            </li>
+            <li class="nav-item mr-5">
+                <a class="nav-link" href="{{ action('ProductController@create') }}"><label>商品登録</label></a>
             </li>
             <hr>
             <li class="nav-item mr-5">
@@ -37,13 +38,13 @@
             </li>
             @else
             <li class="nav-item mr-5">
-                <a class="nav-link" href="{{ action('ProductController@create') }}"><label>商品登録</label></a>
-            </li>
-            <li class="nav-item mr-5">
                 <li class="nav-item mr-5">
                 <a class="nav-link" href="{{ route('mypage') }}">
                     <i class="fas fa-user mr-1"></i><label>マイページ</label>
                 </a>
+            </li>
+            <li class="nav-item mr-5">
+                <a class="nav-link" href="{{ action('ProductController@create') }}"><label>商品登録</label></a>
             </li>
             <li class="nav-item mr-5">
                 <a class="nav-link" href="{{ route('mypage.favorite') }}">

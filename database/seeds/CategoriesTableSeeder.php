@@ -12,6 +12,8 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('categories')->truncate();
+        
         $major_category_names = [
             '本', 'コンピュータ', 'ディスプレイ'
         ];

@@ -110,6 +110,7 @@
                 </div>
             </div>
         </div>
+        <a href="/products" class="btn samazon-submit-button ml-2">商品一覧へ</a>
     </div>
 </div>
 @endsection
