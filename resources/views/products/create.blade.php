@@ -41,7 +41,6 @@
         </div>
         <button type="submit" class="btn btn-success">商品を登録</button>
     </form>
-
     <a href="/products" class="btn btn-success">商品一覧に戻る</a>
 </div>
 <script type="text/javascript">
