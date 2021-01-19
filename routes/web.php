@@ -15,6 +15,8 @@ Route::get('/', 'WebController@index');
 
 Route::resource('products', 'ProductController');
 
+Route::post('serch', 'SerchContoller@find');
+
 Route::get('users/carts', 'CartController@index')->name('carts.index');
 
 Route::post('users/carts', 'CartController@store')->name('carts.store');
@@ -42,6 +44,7 @@ Route::get('products/{product}/favorite', 'ProductController@favorite')->name('p
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 if (env('APP_ENV') === 'local') {
     URL::forceScheme('https');

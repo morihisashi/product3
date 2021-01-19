@@ -2,7 +2,7 @@
     <a class="navbar-brand" href="{{ url('/') }}">
        <img src="{{asset('img/logo.jpeg')}}">
     </a>
-    <form class="form-inline" action="/Amazon/samazon/serch/serch.php" method="post">
+    <form class="form-inline" action="{{ route('serch.search') }}" method="post">
         <div class="form-group">
             <input class="form-control samazon-header-search-input" type="text" name="serch_name">
         </div>
