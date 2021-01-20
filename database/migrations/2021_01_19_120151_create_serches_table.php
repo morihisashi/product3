@@ -17,7 +17,7 @@ class CreateSerchesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->string('major_category_name');
+            $table->integer('price')->unsigned();
             $table->timestamps();
         });
     }

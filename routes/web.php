@@ -15,7 +15,7 @@ Route::get('/', 'WebController@index');
 
 Route::resource('products', 'ProductController');
 
-Route::post('serch', 'SerchContoller@find');
+Route::post('serch', 'SerchController@find')->name('serch.find');
 
 Route::get('users/carts', 'CartController@index')->name('carts.index');
 
