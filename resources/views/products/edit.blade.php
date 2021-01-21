@@ -49,7 +49,7 @@
         </div>
     </form>
 
-    <a href="/products">商品一覧に戻る</a>
+    <a href="/products" class="btn btn-success">商品一覧に戻る</a>
 </div>
 <script type="text/javascript">
     function handleImage(image) {

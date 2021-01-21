@@ -2,7 +2,8 @@
     <a class="navbar-brand" href="{{ url('/') }}">
        <img src="{{asset('img/logo.jpeg')}}">
     </a>
-    <form class="form-inline" action="{{ route('serch.find') }}" method="post">
+    <form class="form-inline" action="{{ route('search.find') }}" method="post">
+        @csrf
         <div class="form-group">
             <input class="form-control samazon-header-search-input" type="text" name="search_name">
         </div>
