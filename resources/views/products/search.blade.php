@@ -21,7 +21,6 @@
                 </div>
             @endforeach
         @else
-            <h2>検索結果がありません</h2>
             <a>検索結果がありません</a>
         @endif
         <br>
