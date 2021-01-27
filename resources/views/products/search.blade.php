@@ -4,7 +4,7 @@
 <div class="container">
     <body>
         <h1>検索結果</h1>
-        @if(!empty($products))
+        @if (count($products) !== 0)
             @foreach($products as $product)
                 <div class="col-3">
                     <a href="{{route('products.show', $product)}}">
