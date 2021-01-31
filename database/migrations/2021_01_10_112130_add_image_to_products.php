@@ -13,7 +13,7 @@ class AddImageToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('images', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->string('image')->default('');
         });
     }
@@ -25,8 +25,8 @@ class AddImageToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('images', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('image');
         });
     }
 }
