@@ -11,6 +11,12 @@
 |
 */
 
+if (env('APP_ENV') === 'local') {
+    URL::forceScheme('https');
+}elseif(env('APP_ENV') === 'production'){
+    URL::forceScheme('https');
+}
+
 Route::get('/', 'WebController@index');
 
 Route::resource('products', 'ProductController');
@@ -46,8 +52,4 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-if (env('APP_ENV') === 'local') {
-    URL::forceScheme('https');
-}elseif(env('APP_ENV') === 'production'){
-    \URL::forceScheme('https');
-}
+
