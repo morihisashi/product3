@@ -12,7 +12,7 @@
                 <img src="{{ asset('img2/junpsyuugou.jpg')}}" class="w-100 img-fuild">
                 @endif
             @endif
-            @if(env('APP_ENV') === 'production')
+            @if(config('app.env') === 'production')
                 @if ($product->image !== null)
                 <img src="{{ Storage::disk('s3')->url($product->image) }}" class="w-100 img-fluid">
                 @else

@@ -40,7 +40,7 @@
                 <img src="#" id="product-image-preview">
                 @endif
             @endif
-            @if(env('APP_ENV') === 'production')
+            @if(config('app.env') === 'production')
                 @if ($product->image !== null)
                 <img src="{{ Storage::disk('s3')->url($product->image) }}" id="product-image-preview" class="img-fluid w-25">
                 @else

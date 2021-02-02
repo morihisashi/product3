@@ -97,7 +97,7 @@ class ProductController extends Controller
         }
       }
       
-      if(env('APP_ENV') === 'production'){
+      if(config('app.env') === 'production'){
         if ($request->file('image') !== null) {
           $product->image = Storage::disk('s3')->putFile('public/products', $request->file('image'), 'public');
             
@@ -158,7 +158,7 @@ class ProductController extends Controller
          }
       }
       
-      if(env('APP_ENV') === 'production'){
+      if(config('app.env') === 'production'){
         if ($request->hasFile('image')) {
             $product->image = Storage::disk('s3')->putFile('public/products', $request->file('image'), 'public');
         } else {
