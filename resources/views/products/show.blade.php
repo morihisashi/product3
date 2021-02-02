@@ -5,10 +5,19 @@
 <div class="d-flex justify-content-center">
     <div class="row w-75">
         <div class="col-5 offset-1">
-            @if ($product->image !== null)
-            <img src="{{ asset('storage/products/'.$product->image) }}" class="w-100 img-fluid">
-            @else
-            <img src="{{ asset('img2/junpsyuugou.jpg')}}" class="w-100 img-fuild">
+            @if(env('APP_ENV') === 'local')
+                @if ($product->image !== null)
+                <img src="{{ asset('storage/products/'.$product->image) }}" class="w-100 img-fluid">
+                @else
+                <img src="{{ asset('img2/junpsyuugou.jpg')}}" class="w-100 img-fuild">
+                @endif
+            @endif
+            @if(env('APP_ENV') === 'production')
+                @if ($product->image !== null)
+                <img src="{{ Storage::disk('s3')->url($product->image) }}" class="w-100 img-fluid">
+                @else
+                <img src="{{ asset('img2/junpsyuugou.jpg')}}" class="w-100 img-fuild">
+                @endif
             @endif
         </div>
         <div class="col">

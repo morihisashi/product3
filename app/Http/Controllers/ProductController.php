@@ -88,14 +88,23 @@ class ProductController extends Controller
       $product->price = $request->input('price');
       $product->category_id = $request->input('category_id');
       
-      if ($request->file('image') !== null) {
-            $image = $request->file('image')->store('public/products');
-
-            $product->image = basename($image);
+      if(env('APP_ENV') === 'local'){
+        if ($request->file('image') !== null) {
+          $image = $request->file('image')->store('products');
+          $product->image = basename($image);
+        } else {
+            $product->image = '';
+        }
+      }
+      
+      if(env('APP_ENV') === 'production'){
+        if ($request->file('image') !== null) {
+          $product->image = Storage::disk('s3')->putFile('public/products', $request->file('image'), 'public');
             
         } else {
             $product->image = '';
         }
+      }
       $product->save();
 
       return redirect()->route('products.show', ['id' => $product->id]);
@@ -140,12 +149,22 @@ class ProductController extends Controller
       $product->price = $request->input('price');
       $product->category_id = $request->input('category_id');
       
-      if ($request->hasFile('image')) {
-             $image = $request->file('image')->store('public/products');
-             $product->image = basename($image);
-      } else {
+      if(env('APP_ENV') === 'local'){
+        if ($request->hasFile('image')) {
+          $image = $request->file('image')->store('public/products');
+          $product->image = basename($image);
+        } else {
              $product->image = '';
          }
+      }
+      
+      if(env('APP_ENV') === 'production'){
+        if ($request->hasFile('image')) {
+            $product->image = Storage::disk('s3')->putFile('public/products', $request->file('image'), 'public');
+        } else {
+             $product->image = '';
+         }
+      }
       $product->update();
 
       return redirect()->route('products.show', ['id' => $product->id]);

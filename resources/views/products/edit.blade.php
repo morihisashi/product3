@@ -42,7 +42,7 @@
             @endif
             @if(env('APP_ENV') === 'production')
                 @if ($product->image !== null)
-                <img src="{{ secure_asset('storage/products/'.$product->image) }}" id="product-image-preview" class="img-fluid w-25">
+                <img src="{{ Storage::disk('s3')->url($product->image) }}" id="product-image-preview" class="img-fluid w-25">
                 @else
                 <img src="#" id="product-image-preview">
                 @endif
