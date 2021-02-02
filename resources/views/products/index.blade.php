@@ -35,7 +35,7 @@
                     <a href="{{route('products.show', $product)}}">
                         @if(env('APP_ENV') === 'local')
                             @if ($product->image !== "")
-                            <img src="{{ Storage::disk('s3')->url($product->image) }}" class="h-10 img-fluid">
+                            <img src="{{ asset('storage/products/'.$product->image) }}" class="h-10 img-fluid">
                             @else
                             <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
                             @endif
@@ -44,7 +44,7 @@
                             @if ($product->image !== "")
                             <img src="{{ Storage::disk('s3')->url($product->image) }}" class="h-10 img-fluid">
                             @else
-                            <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
+                            <img src="{{ secure_asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
                             @endif
                         @endif
                     </a>
