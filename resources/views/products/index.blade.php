@@ -33,10 +33,19 @@
                 @foreach($products as $product)
                 <div class="col-3">
                     <a href="{{route('products.show', $product)}}">
-                        @if ($product->image !== "")
-                        <img src="{{ asset('storage/products/'.$product->image) }}" class="h-10 img-fluid">
-                        @else
-                        <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
+                        @if(env('APP_ENV') === 'local')
+                            @if ($product->image !== "")
+                            <img src="{{ asset('storage/products/'.$product->image) }}" class="h-10 img-fluid">
+                            @else
+                            <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
+                            @endif
+                        @endif
+                        @if(env('APP_ENV') === 'production')
+                            @if ($product->image !== "")
+                            <img src="{{ secure_asset('storage/products/'.$product->image) }}" class="h-10 img-fluid">
+                            @else
+                            <img src="{{ secure_asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
+                            @endif
                         @endif
                     </a>
                     <div class="row">
