@@ -30,34 +30,48 @@
         </div>
         <div class="container mt-4">
             <div class="row w-100">
-                @foreach($products as $product)
-                <div class="col-3">
-                    <a href="{{route('products.show', $product)}}">
-                        @if(env('APP_ENV') === 'local')
-                            @if ($product->image !== "")
-                            <img src="{{ asset('storage/products/'.$product->image) }}" class="h-10 img-fluid">
-                            @else
-                            <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
-                            @endif
-                        @endif
-                        @if(env('APP_ENV') === 'production')
-                            @if ($product->image !== "")
-                            <img src="{{ Storage::disk('s3')->url($product->image) }}" class="h-10 img-fluid">
-                            @else
-                            <img src="{{ secure_asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
-                            @endif
-                        @endif
-                    </a>
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="samazon-product-label mt-2">
-                                {{$product->name}}<br>
-                                <label>￥{{$product->price}}</label>
-                            </p>
+                @if(env('APP_ENV') === 'local')
+                    @foreach($products as $product)
+                    <div class="col-3">
+                        <a href="{{route('products.show', $product)}}">
+                                @if ($product->image !== "")
+                                <img src="{{ asset('storage/products/'.$product->image) }}" class="h-10 img-fluid">
+                                @else
+                                <img src="{{ asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
+                                @endif
+                        </a>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="samazon-product-label mt-2">
+                                    {{$product->name}}<br>
+                                    <label>￥{{$product->price}}</label>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endforeach
+                    @endforeach
+                @endif
+                @if(env('APP_ENV') === 'production')
+                    @foreach($products as $product)
+                    <div class="col-3">
+                        <a href="{{route('products.show', $product)}}">
+                                @if ($product->image !== "")
+                                <img src="{{ Storage::disk('s3')->url($product->image) }}" class="h-10 img-fluid">
+                                @else
+                                <img src="{{ secure_asset('img2/janpsyuugou.jpg')}}" class="h-10 img-fuild">
+                                @endif
+                        </a>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="samazon-product-label mt-2">
+                                    {{$product->name}}<br>
+                                    <label>￥{{$product->price}}</label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
             </div>
         </div>
          {{ $products->links() }}
